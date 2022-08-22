@@ -5,6 +5,7 @@ import config from '../config';
 import { StateServiceVideo } from '../stateServiceVideo';
 import { MessageIniVideoService } from '../messages/messageIniVideo.service';
 import { MessageIniVideo } from '../messages/messageIniVideo';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-video',
@@ -33,6 +34,8 @@ export class VideoComponent {
   @ViewChild('publisherDiv', { static: false }) 
     publisherDiv!: ElementRef<HTMLDivElement>;
 
+  message$: Observable<MessageIniVideo>;
+
   constructor(
     private http: HttpClient,
     private stateService: StateServiceVideo,
@@ -40,7 +43,7 @@ export class VideoComponent {
     private messageService: MessageIniVideoService
     ) {
     
-  
+      this.message$=messageService.messages;
       messageService.messages.subscribe(m => {
        this.newVideoRoom(m);
       } );
