@@ -6,6 +6,7 @@ import { MessageIniVideoService } from '../messages/messageIniVideo.service';
 import { MessageIniVideo } from '../messages/messageIniVideo';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-video',
@@ -43,9 +44,10 @@ export class VideoComponent {
     let get_session_url : string = config.SAMPLE_SERVER_BASE_URL;
 
     let roomName = message['roomName'];
- 
-
-    let videoSrc="https://tokbox.com/embed/embed/ot-embed.js?embedId=0c8e23e6-ea79-4005-bed9-0c31d5121c8e&room="+roomName+"&iframe=true";
+    let embedId = environment.vonage.embedId;
+    let url = environment.vonage.url;
+    
+    let videoSrc=url+"?"+"embedId="+embedId+"&room="+roomName+"&iframe=true";
 
     this.renderer.setProperty(this.iframeVideo.nativeElement,'width','100%');
     this.renderer.setProperty(this.iframeVideo.nativeElement,'height','100%');
