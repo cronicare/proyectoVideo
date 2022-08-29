@@ -46,6 +46,7 @@ export class VideoComponent {
     let roomName = message['roomName'];
     let embedId = environment.vonage.embedId;
     let url = environment.vonage.url;
+
     
     let videoSrc=url+"?"+"embedId="+embedId+"&room="+roomName+"&iframe=true";
 
